@@ -1,0 +1,26 @@
+	 "autologger_v4": {
+		"prefix": "autologger_v4",
+		"body": [
+			"import re",
+			"pattern_method=r[a-z]+[A-Z][a-z]+\\(\\)\\s{",
+			"//#pattern_class = r[a-z][A-Z][a-z]()",
+			
+			"#Open the file in read mode",
+			"with open(\"mon_script.java\", \"r\") as file:",
+			"   content = file.read()",
+			
+			"#Define a function to add a logger to each match",
+			"def add_logger_method(match):",
+			"   return match.group() + \"\n Pig.logger.info('[LPA][method][\"+match.group()+\"]');\"",
+			
+			"#Replace all occurrences of the pattern with the updated string",
+			"updated_content = re.sub(pattern_method, add_logger_method, content)",
+			
+			"#Open the file in write mode and write the updated content",
+			"with open(\"mon_script.java\", \"w\") as file:",
+			"   file.write(updated_content)",
+				
+			"print(\"v4\")"
+		],
+		"description": "Log output to console"
+	},
